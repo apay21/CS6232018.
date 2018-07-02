@@ -68,29 +68,29 @@ select d.dep_id, addr
 from depot d
 where exists(select prod_id from stock s 
 			    where prod_id in ('p1')
-               and quantity > 0 and d.dep_id = s.dep_id)
+               and quantity > 0 and d.dep_id = s.dep_id);
 
 
 select d.dep_id, addr 
 from depot d
 where not exists(select prod_id from stock s 
 			    where prod_id in ('p1')
-               and quantity < 1 and d.dep_id = s.dep_id)
+               and quantity < 1 and d.dep_id = s.dep_id);
 
 -- 5.
 select prod_id, price from product where price >= 250
 intersect  
-select prod_id, price from product where price <= 400
+select prod_id, price from product where price <= 400;
 
 
 select prod_id, price from product
-where price between 250 and 400
+where price between 250 and 400;
 
 
 
 -- 6.
 select  count(*) from stock
-where quantity < 1
+where quantity < 1;
 
 
 
@@ -99,13 +99,13 @@ select   avg(PRICE)
 from STOCK s
 join PRODUCT p on s.PROD_ID = p.PROD_ID
 where DEP_ID = 'd2'
-  and QUANTITY > 0
+  and QUANTITY > 0;
 
  
 -- 8.
 
 select dep_id, quantity from stock
-where quantity in (select max(quantity) qty from STOCK)
+where quantity in (select max(quantity) qty from STOCK);
   
 
 
@@ -113,7 +113,7 @@ where quantity in (select max(quantity) qty from STOCK)
 
 select prod_id, sum(quantity) qty from STOCK s
 where QUANTITY > 0
-group by prod_id
+group by prod_id;
 
 -- 10.
 
@@ -121,7 +121,7 @@ select pname, p.prod_id
 from product p
 join (select prod_id, count(*) total from stock s group by prod_id) t
       on p.prod_id = t.prod_id
-where total >= 3
+where total >= 3;
 
  
 
@@ -129,7 +129,7 @@ select pname, p.prod_id
 from product p
 join (select prod_id, sum(1) total from stock s group by prod_id) t
       on p.prod_id = t.prod_id
-where total >= 3
+where total >= 3;
 
 -- 11.
 
